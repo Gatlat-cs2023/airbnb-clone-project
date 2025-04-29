@@ -49,3 +49,23 @@ Entity Relationships
 - A **Booking** is associated with one **Property** and one **User**.
 - A **Review** is given by a **User** for a specific **Property**.
 - A **Payment** is linked to a specific **Booking**.
+
+Feature Breakdown
+
+1. User Management
+Users can register, log in, and manage their profiles. The system supports role-based access control, distinguishing between guests and property hosts.
+
+2. Property Management
+Hosts can list properties with detailed information such as title, description, location, price, and images. They can also update or remove listings as needed.
+
+3. Booking System
+Guests can search for available properties, select dates, and make bookings. The system ensures no double-booking and tracks booking history for both users and hosts.
+
+4. Review & Rating System
+Guests can leave reviews and ratings for properties they’ve stayed in. This feedback helps other users make informed decisions and encourages quality service from hosts.
+
+5. Payment Integration
+Secure payment processing for bookings is handled within the app. It tracks payment status, ensures proper invoicing, and confirms successful transactions.
+
+6. Admin Dashboard (Optional)
+Admins can monitor user activities, manage content, and ensure compliance with platform policies. This feature adds an extra layer of control and transparency.
