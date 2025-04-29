@@ -88,3 +88,19 @@ All user inputs are validated and sanitized to prevent injection attacks (e.g., 
 
 5. Secure Payment Handling
 Payments are processed through trusted third-party services (e.g., Stripe or PayPal) with secure protocols. This protects financial data and ensures compliance with industry standards like PCI-DSS.
+
+CI/CD Pipeline
+
+What is CI/CD?
+
+CI/CD stands for **Continuous Integration** and **Continuous Deployment/Delivery**. It is a software development practice that automates the process of testing, building, and deploying code. CI ensures that changes are tested automatically, while CD handles deploying those changes to production or staging environments.
+
+Why It’s Important
+
+CI/CD pipelines increase development speed and code quality by catching issues early through automated testing. It ensures smooth deployments, reduces the chances of bugs in production, and promotes collaboration within the team by maintaining a consistent development workflow.
+
+Tools Used
+
+- **GitHub Actions**: Automates workflows like running tests, linting code, and deploying the application.
+- **Docker**: Ensures consistent environments across development, testing, and production using containerization.
+- **Heroku / AWS / Netlify** (optional): Hosting platforms for continuous deployment of backend or frontend services.
