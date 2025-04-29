@@ -69,3 +69,22 @@ Secure payment processing for bookings is handled within the app. It tracks paym
 
 6. Admin Dashboard (Optional)
 Admins can monitor user activities, manage content, and ensure compliance with platform policies. This feature adds an extra layer of control and transparency.
+
+API Security
+
+Security is a top priority in this project to protect sensitive user data, ensure trust, and maintain system integrity. The following key measures are implemented:
+
+1. Authentication
+The system uses token-based authentication (e.g., JWT) to verify the identity of users accessing the API. This ensures that only registered and logged-in users can perform certain actions, protecting user accounts from unauthorized access.
+
+2. Authorization
+Role-based access control is enforced to restrict access to specific endpoints. For example, only hosts can manage property listings, and only authenticated users can make bookings or post reviews.
+
+3. Rate Limiting
+Rate limiting is applied to prevent abuse of the API through excessive requests (e.g., brute force attacks). This ensures fair use of resources and improves application performance and reliability.
+
+4. Input Validation & Sanitization
+All user inputs are validated and sanitized to prevent injection attacks (e.g., SQL injection, XSS). This is crucial for maintaining data integrity and protecting the backend systems.
+
+5. Secure Payment Handling
+Payments are processed through trusted third-party services (e.g., Stripe or PayPal) with secure protocols. This protects financial data and ensures compliance with industry standards like PCI-DSS.
