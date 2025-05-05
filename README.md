@@ -1,5 +1,30 @@
 The Airbnb Clone Project is a comprehensive, real-world application designed to simulate the development of a robust booking platform like Airbnb. It involves a deep dive into full-stack development, focusing on backend systems, database design, API development, and application security. This project enables learners to understand complex architectures, workflows, and collaborative team dynamics while building a scalable web application.
 
+Team Roles
+
+This section outlines the key roles within the project team and their responsibilities, inspired by typical agile software development practices and references like the ITRexGroup blog.
+
+1. Backend Developer
+Responsible for developing and maintaining the server-side logic of the application. Handles API creation, database integration, authentication, and overall system performance.
+
+2. Frontend Developer
+Builds the user interface and ensures the application is responsive, accessible, and user-friendly. Works closely with designers to implement UI/UX designs using modern frameworks.
+
+3. Database Administrator (DBA)
+Manages the database systems, including schema design, query optimization, data backups, and security. Ensures data integrity and availability.
+
+4. DevOps Engineer
+Builds and manages the CI/CD pipeline, automates deployments, monitors infrastructure, and ensures system scalability and reliability using tools like Docker, Kubernetes, and GitHub Actions.
+
+5. UI/UX Designer
+Designs intuitive interfaces and improves user experience by creating wireframes, prototypes, and visual designs. Collaborates with developers to bring designs to life.
+
+6. Project Manager
+Coordinates the project’s timeline, team communication, task assignments, and ensures the project stays aligned with business goals. Acts as a bridge between stakeholders and the development team.
+
+7. QA Engineer
+Responsible for ensuring the quality of the product through automated and manual testing. Identifies bugs, verifies fixes, and maintains testing documentation.
+
 Technology Stack
 - Django: A high-level Python web framework that simplifies building RESTful APIs and web applications.
 - PostgreSQL: A powerful open-source relational database used to store and manage data.
