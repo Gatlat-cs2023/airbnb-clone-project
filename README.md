@@ -39,57 +39,97 @@ This section outlines the key roles within the project team and their responsibi
 
 ---
 
-## 🗃️ Database Design
+### 📦 Database Design
 
-### Key Entities
+#### 🔑 Entities and Attributes
 
-1. **Users**
+**User**  
+- `user_id`: Primary Key, UUID, Indexed  
+- `first_name`: VARCHAR, NOT NULL  
+- `last_name`: VARCHAR, NOT NULL  
+- `email`: VARCHAR, UNIQUE, NOT NULL  
+- `password_hash`: VARCHAR, NOT NULL  
+- `phone_number`: VARCHAR, NULL  
+- `role`: ENUM (guest, host, admin), NOT NULL  
+- `created_at`: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP  
 
-   * `id` (Primary Key)
-   * `name`
-   * `email`
-   * `password`
-   * `role` (e.g., guest, host)
+**Property**  
+- `property_id`: Primary Key, UUID, Indexed  
+- `host_id`: Foreign Key, references User(user_id)  
+- `name`: VARCHAR, NOT NULL  
+- `description`: TEXT, NOT NULL  
+- `location`: VARCHAR, NOT NULL  
+- `pricepernight`: DECIMAL, NOT NULL  
+- `created_at`: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP  
+- `updated_at`: TIMESTAMP, ON UPDATE CURRENT_TIMESTAMP  
 
-2. **Properties**
+**Booking**  
+- `booking_id`: Primary Key, UUID, Indexed  
+- `property_id`: Foreign Key, references Property(property_id)  
+- `user_id`: Foreign Key, references User(user_id)  
+- `start_date`: DATE, NOT NULL  
+- `end_date`: DATE, NOT NULL  
+- `total_price`: DECIMAL, NOT NULL  
+- `status`: ENUM (pending, confirmed, canceled), NOT NULL  
+- `created_at`: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP  
 
-   * `id` (Primary Key)
-   * `user_id` (Foreign Key referencing Users)
-   * `title`
-   * `location`
-   * `price_per_night`
+**Payment**  
+- `payment_id`: Primary Key, UUID, Indexed  
+- `booking_id`: Foreign Key, references Booking(booking_id)  
+- `amount`: DECIMAL, NOT NULL  
+- `payment_date`: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP  
+- `payment_method`: ENUM (credit_card, paypal, stripe), NOT NULL  
 
-3. **Bookings**
+**Review**  
+- `review_id`: Primary Key, UUID, Indexed  
+- `property_id`: Foreign Key, references Property(property_id)  
+- `user_id`: Foreign Key, references User(user_id)  
+- `rating`: INTEGER, CHECK: rating >= 1 AND rating <= 5, NOT NULL  
+- `comment`: TEXT, NOT NULL  
+- `created_at`: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP  
 
-   * `id` (Primary Key)
-   * `user_id` (Foreign Key referencing Users)
-   * `property_id` (Foreign Key referencing Properties)
-   * `check_in_date`
-   * `check_out_date`
+**Message**  
+- `message_id`: Primary Key, UUID, Indexed  
+- `sender_id`: Foreign Key, references User(user_id)  
+- `recipient_id`: Foreign Key, references User(user_id)  
+- `message_body`: TEXT, NOT NULL  
+- `sent_at`: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP  
 
-4. **Reviews**
+---
 
-   * `id` (Primary Key)
-   * `user_id` (Foreign Key referencing Users)
-   * `property_id` (Foreign Key referencing Properties)
-   * `rating`
-   * `comment`
+#### 🔐 Constraints
 
-5. **Payments**
+**User Table**  
+- Unique constraint on email  
+- Non-null constraints on required fields  
 
-   * `id` (Primary Key)
-   * `booking_id` (Foreign Key referencing Bookings)
-   * `amount`
-   * `payment_date`
-   * `status`
+**Property Table**  
+- Foreign key constraint on host_id  
+- Non-null constraints on essential attributes  
 
-### Entity Relationships
+**Booking Table**  
+- Foreign key constraints on property_id and user_id  
+- `status` must be one of `pending`, `confirmed`, or `canceled`  
 
-* A **User** can list multiple **Properties**.
-* A **User** can make multiple **Bookings**.
-* A **Booking** is associated with one **Property** and one **User**.
-* A **Review** is given by a **User** for a specific **Property**.
-* A **Payment** is linked to a specific **Booking**.
+**Payment Table**  
+- Foreign key constraint on booking_id, ensuring payment is linked to valid bookings  
+
+**Review Table**  
+- Constraints on rating values (1–5)  
+- Foreign key constraints on property_id and user_id  
+
+**Message Table**  
+- Foreign key constraints on sender_id and recipient_id  
+
+---
+
+#### ⚙️ Indexing
+
+- Primary Keys: Indexed automatically  
+- Additional Indexes:  
+  - `email` in the User table  
+  - `property_id` in the Property and Booking tables  
+  - `booking_id` in the Booking and Payment tables  
 
 ---
 
