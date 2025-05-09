@@ -133,25 +133,42 @@ This section outlines the key roles within the project team and their responsibi
 
 ---
 
-## 🚀 Feature Breakdown
+## 🚀 Feature Breakdown 
 
 1. **User Management**
-   Users can register, log in, and manage their profiles. The system supports role-based access control, distinguishing between guests and property hosts.
+   - Based on the `User` table.
+   - Supports user registration, login, and profile management.
+   - Role-based access via the `role` field (guest, host, admin).
+   - Enforces unique email addresses and stores hashed passwords.
 
 2. **Property Management**
-   Hosts can list properties with detailed information such as title, description, location, price, and images. They can also update or remove listings as needed.
+   - Backed by the `Property` table linked to a `host_id` (User).
+   - Hosts can create, update, or delete listings with `name`, `description`, `location`, `pricepernight`, and timestamps.
+   - Foreign key constraints maintain data integrity.
 
 3. **Booking System**
-   Guests can search for available properties, select dates, and make bookings. The system ensures no double-booking and tracks booking history for both users and hosts.
+   - Powered by the `Booking` table linking `user_id` and `property_id`.
+   - Guests can reserve properties for specific dates (`start_date`, `end_date`) and track booking `status` (pending, confirmed, canceled).
+   - Calculates and stores `total_price`.
 
 4. **Review & Rating System**
-   Guests can leave reviews and ratings for properties they’ve stayed in. This feedback helps other users make informed decisions and encourages quality service from hosts.
+   - Based on the `Review` table.
+   - Guests can leave `rating` (1–5) and `comment` for each property they've stayed in.
+   - Linked via foreign keys to both `User` and `Property` tables.
 
 5. **Payment Integration**
-   Secure payment processing for bookings is handled within the app. It tracks payment status, ensures proper invoicing, and confirms successful transactions.
+   - Uses the `Payment` table, which links to `Booking` via `booking_id`.
+   - Stores `amount`, `payment_method` (credit_card, paypal, stripe), and `payment_date`.
+   - Ensures every payment is associated with a valid booking.
 
-6. **Admin Dashboard (Optional)**
-   Admins can monitor user activities, manage content, and ensure compliance with platform policies. This feature adds an extra layer of control and transparency.
+6. **Messaging System**
+   - Implemented with the `Message` table.
+   - Allows users to send messages (`message_body`) to each other.
+   - Stores `sender_id`, `recipient_id`, and `sent_at`.
+
+7. **Admin Dashboard (Optional)**
+   - Leverages user `role = admin` to grant elevated permissions.
+   - Admins can oversee platform usage, manage listings or users, and enforce platform policies.
 
 ---
 
